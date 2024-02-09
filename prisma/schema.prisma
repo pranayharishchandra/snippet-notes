@@ -13,6 +13,6 @@ datasource db {
 model Snippet {
   id      Int      @id @default(autoincrement())
   title   String
-  snippet String
+  snippet    String
 }
  
