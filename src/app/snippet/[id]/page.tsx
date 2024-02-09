@@ -8,6 +8,8 @@ interface SnippetPageProp {
 }
 
 async function SnippetPage(props: SnippetPageProp) {
+
+  await new Promise((r) => setTimeout(r,1000))
   const { id } = props.params;
 
   try {
@@ -17,15 +19,22 @@ async function SnippetPage(props: SnippetPageProp) {
     });
 
     if (!snippet) {
-      return notFound();
+      return (
+        <div>
+          {/* {notFound()} */}
+          <h1 className="bold text-3xl text-center">snippet with id: {id} not found</h1>
+        </div>
+      );
     }
+    
 
     return (
-      <div>
-    
-        {snippet.snippet}
-        {snippet.snippet}
+      <div key={snippet.id} className="border border-blue-500 m-2 rounded-md shadow-md">
+      <div className="flex-row m-2">
+        <h1 className="text-2xl text-gray-700 p-1 border-b border-red-300">{snippet.title}</h1>
+        <h1 className="text-md text-gray-700 p-1">{snippet.snippet}</h1>
       </div>
+    </div>
     );
   } catch (error) {
     console.error("Error fetching snippet:", error);
