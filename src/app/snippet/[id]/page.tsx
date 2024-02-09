@@ -9,7 +9,7 @@ interface SnippetPageProp {
 
 async function SnippetPage(props: SnippetPageProp) {
 
-  await new Promise((r) => setTimeout(r,1000))
+  await new Promise((r) => setTimeout(r,200))
   const { id } = props.params;
 
   try {
@@ -31,6 +31,7 @@ async function SnippetPage(props: SnippetPageProp) {
     return (
       <div key={snippet.id} className="border border-blue-500 m-2 rounded-md shadow-md">
       <div className="flex-row m-2">
+        
         <h1 className="text-2xl text-gray-700 p-1 border-b border-red-300">{snippet.title}</h1>
         <h1 className="text-md text-gray-700 p-1">{snippet.snippet}</h1>
       </div>
