@@ -1,7 +1,8 @@
 import { db } from "@/db";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import SnippetEditForm from "@/components/snippet-edit-form";
-
+// import { editSnippet } from "@/actions/index" // don't include index
+import * as actions from "@/actions"
 
 interface SnippetEditPageProp {
   params: {
@@ -23,7 +24,6 @@ async function SnippetPage(props: SnippetEditPageProp) {
     if (!snippet) {
       return (
         <div>
-          {/* {notFound()} */}
           <h1 className="bold text-3xl text-center">snippet with id: {id} not found</h1>
         </div>
       );
@@ -39,15 +39,9 @@ async function SnippetPage(props: SnippetEditPageProp) {
               <h1 className="text-2xl text-gray-700 p-1 ">{snippet.title}</h1>
             </div>
 
-            <div className="flex">
-              
-
-              <button className="mx-1 px-2 bg-blue-300 hover:bg-blue-400 rounded-lg">Save</button>
-            </div>
-
           </div>
 
-          <SnippetEditForm snippet={snippet.snippet}/>
+          <SnippetEditForm snippet={snippet} />
 
         </div>
       </div>
