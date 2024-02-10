@@ -2,7 +2,7 @@ import { db } from "@/db";
 // import { notFound } from "next/navigation";
 import SnippetEditForm from "@/components/snippet-edit-form";
 // import { editSnippet } from "@/actions/index" // don't include index
-import * as actions from "@/actions"
+
 
 interface SnippetEditPageProp {
   params: {
