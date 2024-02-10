@@ -1,15 +1,15 @@
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import SnippetEditForm from "@/components/snippet-edit-form";
 
 
-interface SnippetPageProp {
+interface SnippetEditPageProp {
   params: {
     id: string
   }
 }
 
-async function SnippetPage(props: SnippetPageProp) {
+async function SnippetPage(props: SnippetEditPageProp) {
 
   await new Promise((r) => setTimeout(r, 200))
   const { id } = props.params;
@@ -40,23 +40,14 @@ async function SnippetPage(props: SnippetPageProp) {
             </div>
 
             <div className="flex">
+              
 
-              <button className="mx-1 px-2 bg-blue-300 hover:bg-blue-400 rounded-lg">
-                <Link href={`/snippet/${id}/edit`}>
-                  Edit
-                </Link>
-              </button>
-
-              <button className="mx-1 px-2 bg-blue-300 hover:bg-blue-400 rounded-lg">Delete</button>
+              <button className="mx-1 px-2 bg-blue-300 hover:bg-blue-400 rounded-lg">Save</button>
             </div>
 
           </div>
 
-          <pre>
-            <p className="rounded-md m-2 text-md  p-2 bg-violet-200 text-black">
-              {snippet.snippet}
-            </p>
-          </pre>
+          <SnippetEditForm snippet={snippet.snippet}/>
 
         </div>
       </div>
@@ -65,6 +56,7 @@ async function SnippetPage(props: SnippetPageProp) {
     console.error("Error fetching snippet:", error);
     return <div>Error fetching snippet</div>;
   }
+
 }
 
 export default SnippetPage;
